@@ -1,0 +1,36 @@
+nav {
+  margin: 0 20px;
+
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+
+  & section {
+    display: flex;
+    align-items: center;
+    gap: 80px;
+
+    & h2 {
+      font-size: 28px;
+    }
+
+  }
+
+  & ul {
+    display: flex;
+    flex-direction: row;
+    list-style: none;
+    gap: 18px;
+
+    & a {
+      cursor: pointer;
+      text-decoration: none;
+      color: black;
+      font-size: 20px;
+    }
+
+    & a:hover {
+      color: red;
+    }
+  }
+}
