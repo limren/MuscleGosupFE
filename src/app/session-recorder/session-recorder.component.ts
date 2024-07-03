@@ -5,6 +5,7 @@ import {
   OnInit,
   ViewChild,
 } from '@angular/core';
+import { FrameService } from '../services/frame.service';
 
 @Component({
   selector: 'app-session-recorder',
@@ -12,14 +13,16 @@ import {
   styleUrl: './session-recorder.component.css',
 })
 export class SessionRecorderComponent implements AfterViewInit {
+  // FrameService injection for frame processing
+  constructor(private frameService: FrameService) {}
+
   // Angular decorator meaning that it's related to DOM Element and therefore is a ref to videoElement (video tag from HTML)
   @ViewChild('videoElement') videoElement!: ElementRef;
-  // Variable that will contains the HTML video element
+  // Variable containing the HTML video element
   video!: HTMLVideoElement;
 
   ngAfterViewInit(): void {
     this.video = this.videoElement.nativeElement;
-    console.log(navigator.mediaDevices && navigator.mediaDevices.getUserMedia);
     if (navigator.mediaDevices && navigator.mediaDevices.getUserMedia) {
       navigator.mediaDevices
         .getUserMedia({ video: true })

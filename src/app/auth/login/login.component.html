@@ -1,0 +1,8 @@
+<p>login works!</p>
+
+<form>
+  <input type="text" [formControl]="username">
+  <input type="password" [formControl]="password">
+</form>
+
+<p>Value {{ username.getRawValue() }}</p>
