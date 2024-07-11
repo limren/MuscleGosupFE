@@ -1,5 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
+import { catchError, of, tap } from 'rxjs';
+import { environment } from '../../../environments/environment.development';
 
 type LoginForm = {
   username: string;
@@ -19,30 +21,21 @@ export class AuthService {
   constructor(private http: HttpClient) {}
 
   // #TODO : change it to be imported from .env or .env.production
-  private API_URL = 'http://localhost:8080/api/auth';
+  private API_URL = environment.apiURL + '/auth';
 
   authenticate(loginForm: LoginForm) {
-    // try {
-    return this.http.post(this.API_URL + '/login', loginForm);
-
-    // } catch (err) {
-    //   return {
-    //     message: 'Authentication failed' + err,
-    //     content: [],
-    //     isLogged: false,
-    //   };
-    // }
+    return this.http.post(this.API_URL + '/login', loginForm).pipe(
+      tap((response) => {
+        console.log('Authentication successfully worked: ', response);
+      }),
+      catchError((error) => {
+        console.log('Error while logging in : ', error);
+        return of({ error: true, message: 'Authentication failed' });
+      })
+    );
   }
 
   register(registerForm: RegisterForm) {
-    // try {
     return this.http.post(this.API_URL + '/register', registerForm);
-
-    // } catch (err) {
-    //   return {
-    //     message: 'Registration failed ' + err,
-    //     content: [],
-    //   };
-    // }
   }
 }

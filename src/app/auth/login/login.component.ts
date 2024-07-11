@@ -1,5 +1,10 @@
 import { Component, inject } from '@angular/core';
-import { FormControl, FormGroup, ReactiveFormsModule } from '@angular/forms';
+import {
+  FormControl,
+  FormGroup,
+  ReactiveFormsModule,
+  Validators,
+} from '@angular/forms';
 import { AuthService } from '../../services/auth/auth.service';
 
 @Component({
@@ -13,8 +18,14 @@ export class LoginComponent {
   authService = inject(AuthService);
 
   loginForm = new FormGroup({
-    username: new FormControl(''),
-    password: new FormControl(''),
+    username: new FormControl('', {
+      nonNullable: true,
+      validators: [Validators.required, Validators.minLength(4)],
+    }),
+    password: new FormControl('', {
+      nonNullable: true,
+      validators: [Validators.required, Validators.minLength(8)],
+    }),
   });
 
   onSubmit() {
@@ -23,15 +34,10 @@ export class LoginComponent {
     );
     const username = this.loginForm.value.username;
     const password = this.loginForm.value.password;
-    if (
-      username == null ||
-      username == '' ||
-      username == undefined ||
-      username.length < 4
-    ) {
+    if (!username) {
       console.log('error username');
       return;
-    } else if (password == null || password == '' || password.length < 8) {
+    } else if (!password) {
       console.log('error password');
       return;
     }
@@ -39,6 +45,7 @@ export class LoginComponent {
       username: username,
       password: password,
     });
-    console.log('response : ', response);
+
+    response.subscribe(() => console.log('ok'));
   }
 }
