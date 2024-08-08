@@ -3,6 +3,7 @@ import { MyBoardComponent } from './my-board/my-board.component';
 import { SessionRecorderComponent } from './session-recorder/session-recorder.component';
 import { LoginComponent } from './auth/login/login.component';
 import { RegisterComponent } from './auth/register/register.component';
+import { WorkoutSessionsBoardComponent } from './my-board/workout-sessions-board/workout-sessions-board.component';
 
 export const routes: Routes = [
   { path: 'home', component: MyBoardComponent },

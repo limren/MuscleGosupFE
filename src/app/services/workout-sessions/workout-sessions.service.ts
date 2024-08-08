@@ -1,6 +1,8 @@
 import { Injectable } from '@angular/core';
 import { environment } from '../../../environments/environment.development';
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { Observable } from 'rxjs';
+import { WorkoutSession } from '../../models/workout-session.model';
 
 @Injectable({
   providedIn: 'root',
@@ -10,7 +12,11 @@ export class WorkoutSessionsService {
 
   private API_URL = environment.apiURL + '/workoutSession';
 
-  getSessions() {
-    return this.http.get(this.API_URL + '/get/all');
+  getSessions(): Observable<WorkoutSession[]> {
+    return this.http.get<WorkoutSession[]>(this.API_URL + '/get/all', {
+      headers: new HttpHeaders({ 'Content-Type': 'application/json' }),
+      withCredentials: true,
+      // observe: "response" as "response",
+    });
   }
 }
