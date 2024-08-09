@@ -1,6 +1,6 @@
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { catchError, of, tap } from 'rxjs';
+import { catchError, Observable, of, tap } from 'rxjs';
 import { environment } from '../../../environments/environment.development';
 
 type LoginForm = {
@@ -14,6 +14,11 @@ type RegisterForm = {
   password: string;
 };
 
+interface LoginResponse {
+  error?: boolean;
+  message: string;
+}
+
 @Injectable({
   providedIn: 'root',
 })
@@ -23,9 +28,9 @@ export class AuthService {
   // #TODO : change it to be imported from .env or .env.production
   private API_URL = environment.apiURL + '/auth';
 
-  authenticate(loginForm: LoginForm) {
+  authenticate(loginForm: LoginForm): Observable<LoginResponse> {
     return this.http
-      .post(this.API_URL + '/login', loginForm, {
+      .post<LoginResponse>(this.API_URL + '/login', loginForm, {
         withCredentials: true,
       })
       .pipe(

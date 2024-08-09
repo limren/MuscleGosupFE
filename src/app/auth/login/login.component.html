@@ -1,7 +1,42 @@
-<p>login works!</p>
+<section class="login">
+  <section>
+    <section>
+      <header>
+        <section>
+          Muscle Gosup
+        </section>
+        <section>
+          Another thing
+        </section>
+      </header>
 
-<form [formGroup]="loginForm" (ngSubmit)="onSubmit()">
-  <input id="username" type="text" formControlName="username">
-  <input id="password" type="password" formControlName="password">
-  <input type="submit">
-</form>
+      <main>
+        <header>
+          <h2>Welcome back !</h2>
+          <p>No account yet ? <a href="/register">Sign up</a></p>
+        </header>
+        <form [formGroup]="loginForm" (ngSubmit)="onSubmit()">
+          <section>
+            <label for="username">Username</label>
+            <input id="username" type="text" formControlName="username" placeholder="Enter your username">
+          </section>
+
+          <section>
+            <label for="password">Password</label>
+            <input id="password" type="password" formControlName="password" placeholder="Enter your password">
+          </section>
+
+          <!-- <input id="country" type="text" formControlName="country"> -->
+          <input type="submit" value="Log In">
+        </form>
+
+
+      </main>
+    </section>
+    <p *ngIf='true'
+      [ngClass]='{"toast": true, "red": hasError, "green": !hasError, "active": message != "" && isToastUp}'>
+      {{ message }}</p>
+  </section>
+  <aside>
+  </aside>
+</section>

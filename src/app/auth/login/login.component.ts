@@ -6,15 +6,22 @@ import {
   Validators,
 } from '@angular/forms';
 import { AuthService } from '../../services/auth/auth.service';
+import { Router } from '@angular/router';
+import { NgClass, NgIf } from '@angular/common';
 
 @Component({
   selector: 'app-login',
   standalone: true,
-  imports: [ReactiveFormsModule],
+  imports: [NgIf, NgClass, ReactiveFormsModule],
   templateUrl: './login.component.html',
   styleUrl: './login.component.css',
 })
 export class LoginComponent {
+  hasError = false;
+  message = '';
+  isToastUp = true;
+
+  constructor(private router: Router) {}
   authService = inject(AuthService);
 
   loginForm = new FormGroup({
@@ -46,6 +53,23 @@ export class LoginComponent {
       password: password,
     });
 
-    response.subscribe(() => console.log('ok'));
+    response.subscribe({
+      next: (value) => {
+        this.hasError = value.error ? value.error : false;
+        this.isToastUp = true;
+        this.message = value.message;
+        if (!this.hasError) {
+          setTimeout(() => {
+            this.router.navigate(['/']);
+          }, 2000);
+        }
+        if (this.hasError) {
+          setTimeout(() => {
+            this.isToastUp = false;
+          }, 2000);
+        }
+      },
+      error: (err) => console.log('error :', err),
+    });
   }
 }
