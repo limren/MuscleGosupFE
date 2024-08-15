@@ -6,16 +6,20 @@ import {
   Validators,
 } from '@angular/forms';
 import { AuthService } from '../../services/auth/auth.service';
+import { NgClass, NgIf } from '@angular/common';
 
 @Component({
   selector: 'app-register',
   standalone: true,
-  imports: [ReactiveFormsModule],
+  imports: [NgIf, NgClass, ReactiveFormsModule],
   templateUrl: './register.component.html',
-  styleUrl: './register.component.css',
+  styleUrl: '../auth.component.css',
 })
 export class RegisterComponent {
   authService = inject(AuthService);
+  hasError = false;
+  message = '';
+  isToastUp = true;
 
   registerForm = new FormGroup({
     username: new FormControl('', {

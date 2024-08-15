@@ -1,9 +1,39 @@
 nav {
-  margin: 0 20px;
-
+  margin: 10px 30px;
+  padding: 10px 40px;
+  border-radius: 15px;
+  background-color: #393C43;
+  color: white;
   display: flex;
   align-items: center;
   justify-content: space-between;
+
+  & header,
+  & footer {
+    display: flex;
+    flex-direction: row;
+  }
+
+  & header .navbar-icon:hover,
+  & footer:hover {
+    color: #FF8036;
+  }
+
+  & header {
+    gap: 15px;
+
+
+  }
+
+  & header>* {
+    cursor: pointer;
+  }
+
+
+  & footer {
+    gap: 10px;
+    cursor: pointer;
+  }
 
   & section {
     display: flex;

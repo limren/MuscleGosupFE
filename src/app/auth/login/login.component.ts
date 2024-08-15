@@ -14,7 +14,7 @@ import { NgClass, NgIf } from '@angular/common';
   standalone: true,
   imports: [NgIf, NgClass, ReactiveFormsModule],
   templateUrl: './login.component.html',
-  styleUrl: './login.component.css',
+  styleUrl: '../auth.component.css',
 })
 export class LoginComponent {
   hasError = false;

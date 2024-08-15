@@ -19,4 +19,10 @@ export class WorkoutSessionsService {
       // observe: "response" as "response",
     });
   }
+
+  getThisWeekSessions(): Observable<WorkoutSession[]> {
+    return this.http.get<WorkoutSession[]>(this.API_URL + '/get/thisWeek', {
+      withCredentials: true,
+    });
+  }
 }

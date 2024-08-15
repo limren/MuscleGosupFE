@@ -1,9 +1,45 @@
-<p>register works!</p>
+<section class="register">
+  <section>
+    <section>
+      <header>
+        <section>
+          Muscle Gosup
+        </section>
+        <section>
+          Another thing
+        </section>
+      </header>
+
+      <main>
+        <header>
+          <h2>Get started</h2>
+          <p>Already have an account ? <a href="/login">Sign in</a></p>
+        </header>
+
+        <form [formGroup]="registerForm" (ngSubmit)="onSubmit()">
+          <section>
+            <label for="username">Username</label>
+            <input id="username" type="text" formControlName="username" placeholder="Enter your username">
+          </section>
+          <section>
+            <label for="email">Password</label>
+            <input id="email" type="email" formControlName="email" placeholder="Enter your email">
+          </section>
+          <section>
+            <label for="password">Password</label>
+            <input id="password" type="password" formControlName="password" placeholder="Enter your password">
+          </section>
+          <input type="submit" value="Register">
+        </form>
 
 
-<form [formGroup]="registerForm" (ngSubmit)="onSubmit()">
-  <input id="username" type="text" formControlName="username">
-  <input id="email" type="email" formControlName="email">
-  <input id="password" type="password" formControlName="password">
-  <input type="submit">
-</form>
+
+      </main>
+    </section>
+    <p *ngIf='true'
+      [ngClass]='{"toast": true, "red": hasError, "green": !hasError, "active": message != "" && isToastUp}'>
+      {{ message }}</p>
+  </section>
+  <aside>
+  </aside>
+</section>

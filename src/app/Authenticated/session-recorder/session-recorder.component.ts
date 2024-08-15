@@ -5,7 +5,7 @@ import {
   OnInit,
   ViewChild,
 } from '@angular/core';
-import { FrameService } from '../services/frame.service';
+import { FrameService } from '../../services/frame.service';
 
 @Component({
   selector: 'app-session-recorder',

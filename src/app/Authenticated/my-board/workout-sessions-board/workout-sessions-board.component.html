@@ -1,0 +1,11 @@
+<section>
+
+  <main>
+    <ul>
+      <li *ngFor="let workoutSession of workoutSessions$ | async">
+        <p>{{ workoutSession.title }}</p>
+      </li>
+    </ul>
+  </main>
+
+</section>

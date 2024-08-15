@@ -8,4 +8,44 @@
 body {
   /* width: 100vw; */
   height: 100vh;
+  background-color: #2f3138;
+  color: white;
+
+}
+
+/* Toast notification */
+.toast {
+  color: white;
+  text-align: center;
+  position: absolute;
+  bottom: -40px;
+  z-index: 500;
+  transition: bottom 1s ease-out;
+  padding: 10px;
+  border-radius: 5px;
+
+}
+
+/* #TODO: find better colors */
+.red {
+  background-color: red;
+}
+
+.green {
+  background-color: green;
+}
+
+.active {
+  display: block;
+  bottom: 30px;
+}
+
+html,
+body {
+  height: 100%;
+}
+
+body {
+  margin: 0;
+  font-family: Roboto, "Helvetica Neue", sans-serif;
 }

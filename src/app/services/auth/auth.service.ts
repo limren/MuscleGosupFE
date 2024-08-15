@@ -47,4 +47,8 @@ export class AuthService {
   register(registerForm: RegisterForm) {
     return this.http.post(this.API_URL + '/register', registerForm);
   }
+
+  isLoggedIn(): Observable<boolean> {
+    return this.http.get<boolean>(this.API_URL + '/isLoggedIn');
+  }
 }
