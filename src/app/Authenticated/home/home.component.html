@@ -1,1 +1,42 @@
-<section></section>
+<section class="home">
+  <nav>
+    <ul>
+      <li>Icon</li>
+      <li>Icon</li>
+      <li>Icon</li>
+      <li>Icon</li>
+    </ul>
+  </nav>
+
+  <main>
+    <section class="userInfo" *ngIf="userInfo$ | async as userInfo">
+      <h3>Hello, {{ userInfo.email }}</h3>
+      <p>You have x incoming sessions, consult them.</p>
+    </section>
+
+    <section class="steps">
+      <p>test</p>
+    </section>
+
+    <section class="hydration">
+      <p>test2</p>
+    </section>
+
+    <section class="calories">
+      <p>You have burnt x calories for now</p>
+      <!-- <img/> -->
+      <p>blablabla</p>
+    </section>
+
+    <section class="incomingSessions">
+      <p>Incoming sessions</p>
+    </section>
+
+    <section class="graphSession">
+      Graph session
+    </section>
+
+  </main>
+
+
+</section>

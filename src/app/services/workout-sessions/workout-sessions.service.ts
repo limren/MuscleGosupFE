@@ -25,4 +25,16 @@ export class WorkoutSessionsService {
       withCredentials: true,
     });
   }
+
+  getThisWeekWorkoutSessionsCount(): Observable<number> {
+    return this.http.get<number>(this.API_URL + '/get/thisWeek/count', {
+      withCredentials: true,
+    });
+  }
+
+  getWorkoutSessionsCount(): Observable<number> {
+    return this.http.get<number>(this.API_URL + '/get/all/count', {
+      withCredentials: true,
+    });
+  }
 }

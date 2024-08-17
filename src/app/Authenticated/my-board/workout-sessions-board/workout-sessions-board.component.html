@@ -1,11 +1,30 @@
 <section>
-
   <main>
-    <ul>
-      <li *ngFor="let workoutSession of workoutSessions$ | async">
-        <p>{{ workoutSession.title }}</p>
-      </li>
-    </ul>
-  </main>
+    <header class="header">
+      <h2>My Workout Sessions</h2>
+      <form [formGroup]="filter" class="filter-form">
+        <input type="text" formControlName="title" placeholder="Search sessions" />
+        <input type="submit" value="Search" />
+      </form>
+      <a href="/loggedIn/createWorkoutSession" class="create-button">Create</a>
+    </header>
 
+    <table class="workout-table">
+      <tr>
+        <th>Title</th>
+        <th>Date</th>
+        <th>Duration</th>
+        <th>Exercises</th>
+        <th>Actions</th>
+      </tr>
+      <tr *ngFor="let workoutSession of workoutSessions$ | async">
+        <td>{{ workoutSession.title }}</td>
+        <td>{{ workoutSession.date }}</td>
+        <td>{{ workoutSession.duration }}</td>
+        <td>{{ workoutSession.exercises == null ? 0 : workoutSession.exercises.length  }}</td>
+        <!-- TODO: change this -->
+        <td>Delete|Edit</td>
+      </tr>
+    </table>
+  </main>
 </section>

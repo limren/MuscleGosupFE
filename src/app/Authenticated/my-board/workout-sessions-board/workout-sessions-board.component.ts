@@ -1,25 +1,35 @@
 import { Component } from '@angular/core';
-import { Observable } from 'rxjs';
+import { combineLatest, map, Observable, startWith } from 'rxjs';
 import { WorkoutSession } from '../../../models/workout-session.model';
 import { WorkoutSessionsService } from '../../../services/workout-sessions/workout-sessions.service';
 import { CommonModule, NgFor } from '@angular/common';
+import { FormBuilder, FormGroup, ReactiveFormsModule } from '@angular/forms';
 
 @Component({
   selector: 'app-workout-sessions-board',
   standalone: true,
-  imports: [NgFor, CommonModule],
+  imports: [ReactiveFormsModule, NgFor, CommonModule],
   templateUrl: './workout-sessions-board.component.html',
   styleUrl: './workout-sessions-board.component.css',
 })
 export class WorkoutSessionsBoardComponent {
-  workoutSessions$: Observable<WorkoutSession[]> =
-    this.workoutSessionsService.getSessions();
+  filter = this.formBuilder.nonNullable.group({
+    title: [''],
+  });
 
-  displayedColumns: string[] = ['title', 'duration', 'date', 'actions'];
+  workoutSessions$: Observable<WorkoutSession[]> = combineLatest([
+    this.workoutSessionsService.getSessions(),
+    this.filter.controls.title.valueChanges.pipe(startWith('')),
+  ]).pipe(
+    map(([sessions, title]) => {
+      return sessions.filter((session) =>
+        session.title.toLowerCase().includes(title.toLowerCase())
+      );
+    })
+  );
 
-  constructor(private workoutSessionsService: WorkoutSessionsService) {}
-
-  edit(element: any) {
-    console.log('element : ', element);
-  }
+  constructor(
+    private workoutSessionsService: WorkoutSessionsService,
+    private formBuilder: FormBuilder
+  ) {}
 }

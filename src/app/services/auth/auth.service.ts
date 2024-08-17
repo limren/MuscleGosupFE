@@ -49,6 +49,8 @@ export class AuthService {
   }
 
   isLoggedIn(): Observable<boolean> {
-    return this.http.get<boolean>(this.API_URL + '/isLoggedIn');
+    return this.http.get<boolean>(this.API_URL + '/isLoggedIn', {
+      withCredentials: true,
+    });
   }
 }

@@ -4,17 +4,28 @@ import { RegisterComponent } from './auth/register/register.component';
 import { MainComponent } from './main/main.component';
 import { MyBoardComponent } from './Authenticated/my-board/my-board.component';
 import { SessionRecorderComponent } from './Authenticated/session-recorder/session-recorder.component';
-import { NgModule } from '@angular/core';
-import { HomeComponent } from './Authenticated/home/home.component';
+import { HomeComponent } from './home/home.component';
 import { authGuard } from './auth.guard';
+import { MainAuthenticatedComponent } from './Authenticated/main-authenticated/main-authenticated.component';
+
+import { HomeComponent as AuthHomeComponent } from './Authenticated/home/home.component';
+import { CreateWorkoutSessionComponent } from './Authenticated/create-workout-session/create-workout-session.component';
 
 export const routes: Routes = [
   { path: 'login', component: LoginComponent },
   { path: 'register', component: RegisterComponent },
   {
     path: 'loggedIn',
-    component: MainComponent,
+    component: MainAuthenticatedComponent,
     canActivate: [authGuard],
+    children: [
+      { path: '', component: AuthHomeComponent, pathMatch: 'full' },
+      { path: 'board', component: MyBoardComponent },
+      {
+        path: 'createWorkoutSession',
+        component: CreateWorkoutSessionComponent,
+      },
+    ],
   },
   {
     path: '',
