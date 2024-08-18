@@ -1,19 +1,18 @@
+import { Exercise } from './exercise.model';
+import { AddedSetExercise, SetExercise } from './set.model';
+
 export interface WorkoutSession {
-  id: Number;
-  title: String;
-  duration: Number;
+  id: number;
+  title: string;
+  duration: number;
   date: Date;
   exercises: Exercise[] | null;
 }
 
-interface Exercise {
-  id: Number;
-  name: String;
-  sets: Set[];
-}
-
-interface Set {
-  id: Number;
-  reps: Number;
-  weight: Number;
+export interface CreateWorkoutSessionWithExercisesRequest {
+  title: string;
+  duration: number;
+  date: Date;
+  name: string;
+  sets: SetExercise[];
 }

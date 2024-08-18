@@ -1,0 +1,17 @@
+<section *ngIf="workoutSession$ | async as workoutSession">
+  <section class="exercises">
+    <section *ngFor="let exercise of workoutSession.exercises">
+      {{ exercise.name }}
+    </section>
+    <section *ngFor="let addedExercise of addedExercises">
+      <p>
+        {{ addedExercise.name }}
+      </p>
+    </section>
+    <button (click)="togglePopUpActive()">Add exercise</button>
+  </section>
+</section>
+
+<app-create-exercise-popup (addExerciseEvent)="addExercise($event)" (isActive)="handleIsActivePopUp($event)"
+  *ngIf="isExercisePopUpActive">
+</app-create-exercise-popup>

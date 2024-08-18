@@ -1,9 +1,10 @@
-import { Component } from '@angular/core';
+import { Component, inject } from '@angular/core';
 import { combineLatest, map, Observable, startWith } from 'rxjs';
 import { WorkoutSession } from '../../../models/workout-session.model';
 import { WorkoutSessionsService } from '../../../services/workout-sessions/workout-sessions.service';
 import { CommonModule, NgFor } from '@angular/common';
 import { FormBuilder, FormGroup, ReactiveFormsModule } from '@angular/forms';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-workout-sessions-board',
@@ -13,6 +14,7 @@ import { FormBuilder, FormGroup, ReactiveFormsModule } from '@angular/forms';
   styleUrl: './workout-sessions-board.component.css',
 })
 export class WorkoutSessionsBoardComponent {
+  private router = inject(Router);
   filter = this.formBuilder.nonNullable.group({
     title: [''],
   });
@@ -27,6 +29,10 @@ export class WorkoutSessionsBoardComponent {
       );
     })
   );
+
+  navigateToId(workoutSessionId: number) {
+    this.router.navigate(['/loggedIn/workoutSession/' + workoutSessionId]);
+  }
 
   constructor(
     private workoutSessionsService: WorkoutSessionsService,

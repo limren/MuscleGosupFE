@@ -11,24 +11,36 @@
 
   & nav {
     width: 100%;
-    height: 60px;
-    border-bottom: 1px solid white;
+    height: 60px; 
+    border-bottom: 1px solid #333; 
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.5); 
 
     & ul {
       list-style: none;
       display: flex;
+      justify-content: space-around; 
+      align-items: center;
+      height: 100%;
+    }
+
+    & li {
+      color: #f1f1f1; 
+      font-size: 1.4em; 
     }
   }
 
   & main {
-    width: calc(100% - 60px);
+    width: calc(100% - 40px); 
     height: 100%;
     display: grid;
     grid-template:
-      "a a b b"1fr "e f b b"1fr "c d d d"1fr "c d d d"1fr;
-    grid-template-columns: 2fr 2fr 3fr 2fr;
-    margin: 30px;
-    gap: 15px;
+      "a a b b" 1fr
+      "e f b b" 1fr
+      "c d d d" 1fr
+      "c d d d" 1fr;
+    grid-template-columns: 3fr 3fr 3fr 2fr;
+    margin: 30px 20px; 
+    gap: 20px; 
 
     & .userInfo {
       grid-area: a;
@@ -54,11 +66,12 @@
       grid-area: f;
     }
 
-    &>section {
-      background-color: #111215;
-      border-radius: 20px;
-      padding: 25px 20px;
-
+    & > section {
+      background-color: rgb(24, 25, 29); 
+      border-radius: 25px; 
+      padding: 30px 25px; 
+      box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3); 
+      color: #f1f1f1; 
     }
   }
 }

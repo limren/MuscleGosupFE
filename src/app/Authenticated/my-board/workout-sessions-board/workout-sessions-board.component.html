@@ -17,7 +17,7 @@
         <th>Exercises</th>
         <th>Actions</th>
       </tr>
-      <tr *ngFor="let workoutSession of workoutSessions$ | async">
+      <tr *ngFor="let workoutSession of workoutSessions$ | async" (click)="navigateToId(workoutSession.id)">
         <td>{{ workoutSession.title }}</td>
         <td>{{ workoutSession.date }}</td>
         <td>{{ workoutSession.duration }}</td>

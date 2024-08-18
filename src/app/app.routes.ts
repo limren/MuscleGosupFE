@@ -9,7 +9,8 @@ import { authGuard } from './auth.guard';
 import { MainAuthenticatedComponent } from './Authenticated/main-authenticated/main-authenticated.component';
 
 import { HomeComponent as AuthHomeComponent } from './Authenticated/home/home.component';
-import { CreateWorkoutSessionComponent } from './Authenticated/create-workout-session/create-workout-session.component';
+import { WorkoutSessionComponent } from './Authenticated/workout-session/workout-session.component';
+// import { CreateWorkoutSessionComponent } from './Authenticated/create-workout-session/create-workout-session.component';
 
 export const routes: Routes = [
   { path: 'login', component: LoginComponent },
@@ -21,10 +22,11 @@ export const routes: Routes = [
     children: [
       { path: '', component: AuthHomeComponent, pathMatch: 'full' },
       { path: 'board', component: MyBoardComponent },
-      {
-        path: 'createWorkoutSession',
-        component: CreateWorkoutSessionComponent,
-      },
+      { path: 'workoutSession/:id', component: WorkoutSessionComponent },
+      // {
+      //   path: 'createWorkoutSession',
+      //   component: CreateWorkoutSessionComponent,
+      // },
     ],
   },
   {
