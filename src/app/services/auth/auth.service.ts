@@ -25,7 +25,6 @@ interface LoginResponse {
 export class AuthService {
   constructor(private http: HttpClient) {}
 
-  // #TODO : change it to be imported from .env or .env.production
   private API_URL = environment.apiURL + '/auth';
 
   authenticate(loginForm: LoginForm): Observable<LoginResponse> {
@@ -34,8 +33,8 @@ export class AuthService {
         withCredentials: true,
       })
       .pipe(
-        tap((response) => {
-          console.log('Authentication successfully worked: ', response);
+        tap(() => {
+          return of({ message: "Authentication successfuly worked !"})
         }),
         catchError((error) => {
           console.log('Error while logging in : ', error);

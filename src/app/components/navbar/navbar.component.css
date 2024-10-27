@@ -1,0 +1,17 @@
+:host {
+    section {
+        background-color: aquamarine;
+        & ul {
+            display: flex;
+            align-items: row;
+            list-style: none;
+            justify-content: space-around;
+            align-items: center;
+            height: 50px;
+            & li:first-child {
+                color: green;
+            }
+        }
+    }
+
+}
